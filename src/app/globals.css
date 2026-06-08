@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0f1e;
+  --foreground: #e8edf5;
+  --navy: #0f1b3d;
+  --navy-light: #1a2d5a;
+  --purple: #4c1d95;
+  --purple-light: #7c3aed;
+  --gold: #d4af37;
+  --gold-light: #f5d76e;
+  --card-bg: rgba(15, 27, 61, 0.7);
+  --card-border: rgba(212, 175, 55, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-purple: var(--purple);
+  --color-purple-light: var(--purple-light);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #0a0f1e 0%,
+    #0f1b3d 35%,
+    #1a1040 65%,
+    #0f1b3d 100%
+  );
+}
+
+.gradient-hero {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 27, 61, 0.9) 0%,
+    rgba(76, 29, 149, 0.3) 50%,
+    rgba(10, 15, 30, 0.95) 100%
+  );
+}
+
+.card-elegant {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.card-elegant:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+  color: #0a0f1e;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--gold-light);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold);
+}
+
+.input-field {
+  background: rgba(15, 27, 61, 0.6);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: var(--foreground);
+  transition: border-color 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.input-field::placeholder {
+  color: rgba(232, 237, 245, 0.4);
+}
+
+.gold-accent {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-link {
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: rgba(124, 58, 237, 0.2);
+  border-left: 3px solid var(--gold);
+}
