@@ -103,21 +103,21 @@ export default function AddStudentForm() {
 
   if (dukeNgarkuarDegët) {
     return (
-      <div className="card-elegant rounded-2xl p-8">
+      <div className="card-glass rounded-2xl p-8">
         <LoadingState mesazhi="Duke ngarkuar degët..." />
       </div>
     );
   }
 
   return (
-    <div className="card-elegant rounded-2xl p-8">
+    <div className="card-glass animate-slide-up rounded-2xl p-6 sm:p-8">
       <div className="mb-8 flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple/40">
-          <UserPlus className="h-6 w-6 text-gold" />
+        <div className="icon-accent-box flex h-12 w-12 items-center justify-center rounded-xl">
+          <UserPlus className="h-6 w-6 text-accent" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">Shto Student të Ri</h2>
-          <p className="text-sm text-foreground/60">
+          <p className="text-sm text-muted">
             Plotësoni të dhënat e studentit
           </p>
         </div>
@@ -146,7 +146,7 @@ export default function AddStudentForm() {
           <div>
             <label
               htmlFor="first_name"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Emri
             </label>
@@ -165,7 +165,7 @@ export default function AddStudentForm() {
           <div>
             <label
               htmlFor="last_name"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Mbiemri
             </label>
@@ -187,7 +187,7 @@ export default function AddStudentForm() {
           <div>
             <label
               htmlFor="birth_date"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Datëlindja
             </label>
@@ -205,7 +205,7 @@ export default function AddStudentForm() {
           <div>
             <label
               htmlFor="id_number"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Numri ID
             </label>
@@ -227,7 +227,7 @@ export default function AddStudentForm() {
           <div>
             <label
               htmlFor="academic_year"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Viti Akademik
             </label>
@@ -251,7 +251,7 @@ export default function AddStudentForm() {
           <div>
             <label
               htmlFor="age"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Mosha
             </label>
@@ -273,7 +273,7 @@ export default function AddStudentForm() {
         <div>
           <label
             htmlFor="branch_id"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Dega
           </label>
@@ -298,7 +298,7 @@ export default function AddStudentForm() {
         <div>
           <label
             htmlFor="email"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Adresa Email
           </label>
@@ -318,7 +318,7 @@ export default function AddStudentForm() {
         <div>
           <label
             htmlFor="password"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Fjalëkalimi
           </label>
@@ -334,7 +334,7 @@ export default function AddStudentForm() {
             minLength={6}
             disabled={dukeRuajtur}
           />
-          <p className="mt-1 text-xs text-foreground/50">
+          <p className="mt-1 text-xs text-muted">
             Fjalëkalimi përdoret vetëm për hyrjen në portal (Supabase Auth).
           </p>
         </div>

@@ -1,5 +1,7 @@
 import { FileText } from "lucide-react";
 import type { Exam } from "@/types/database";
+import EmptyState from "@/components/ui/EmptyState";
+import TableWrapper from "@/components/ui/TableWrapper";
 import ExamResultBadge from "./ExamResultBadge";
 
 interface StudentExamTableProps {
@@ -9,50 +11,50 @@ interface StudentExamTableProps {
 export default function StudentExamTable({ provimet }: StudentExamTableProps) {
   if (provimet.length === 0) {
     return (
-      <div className="card-elegant rounded-2xl p-12 text-center">
-        <FileText className="mx-auto h-12 w-12 text-foreground/30" />
-        <h3 className="mt-4 text-lg font-semibold text-foreground/70">
-          Nuk ka provime të regjistruara.
-        </h3>
-      </div>
+      <EmptyState
+        ikona={FileText}
+        titulli="Nuk ka provime të regjistruara."
+      />
     );
   }
 
   return (
-    <div className="card-elegant overflow-hidden rounded-2xl">
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm">
-          <thead>
-            <tr className="border-b border-gold/10 bg-navy-light/50">
-              <th className="px-6 py-4 font-semibold text-gold">Lënda</th>
-              <th className="px-6 py-4 font-semibold text-gold">Viti</th>
-              <th className="px-6 py-4 font-semibold text-gold">Sezoni</th>
-              <th className="px-6 py-4 font-semibold text-gold">Nota</th>
-              <th className="px-6 py-4 font-semibold text-gold">Statusi</th>
+    <TableWrapper>
+      <table className="w-full min-w-[600px] text-left text-sm">
+        <thead>
+          <tr className="table-header">
+            <th className="px-5 py-4 font-semibold text-accent-light">Lënda</th>
+            <th className="px-5 py-4 font-semibold text-accent-light">Viti</th>
+            <th className="px-5 py-4 font-semibold text-accent-light">
+              Sezoni
+            </th>
+            <th className="px-5 py-4 font-semibold text-accent-light">Nota</th>
+            <th className="px-5 py-4 font-semibold text-accent-light">
+              Statusi
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {provimet.map((provim) => (
+            <tr
+              key={provim.id}
+              className="table-row border-b border-white/5 transition-colors duration-300"
+            >
+              <td className="px-5 py-4 font-medium">{provim.exam_name}</td>
+              <td className="px-5 py-4 text-muted">
+                Viti {provim.academic_year}
+              </td>
+              <td className="px-5 py-4 text-muted">{provim.season}</td>
+              <td className="px-5 py-4 text-muted">
+                {provim.grade ?? "—"}
+              </td>
+              <td className="px-5 py-4">
+                <ExamResultBadge statusi={provim.status} />
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {provimet.map((provim) => (
-              <tr
-                key={provim.id}
-                className="border-b border-gold/5 transition-colors hover:bg-purple/10"
-              >
-                <td className="px-6 py-4 font-medium">{provim.exam_name}</td>
-                <td className="px-6 py-4 text-foreground/70">
-                  Viti {provim.academic_year}
-                </td>
-                <td className="px-6 py-4 text-foreground/70">{provim.season}</td>
-                <td className="px-6 py-4 text-foreground/70">
-                  {provim.grade ?? "—"}
-                </td>
-                <td className="px-6 py-4">
-                  <ExamResultBadge statusi={provim.status} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          ))}
+        </tbody>
+      </table>
+    </TableWrapper>
   );
 }

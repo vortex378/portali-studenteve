@@ -9,28 +9,28 @@ import Navbar from "@/components/layout/Navbar";
 
 const vecorite = [
   {
-    ikona: GraduationCap,
-    titulli: "Menaxhim Akademik",
+    ikona: Users,
+    titulli: "Menaxhim Studentësh",
     pershkrimi:
-      "Aksesoni të dhënat tuaja akademike, notat dhe progresin në kohë reale.",
+      "Regjistrimi, përditësimi dhe menaxhimi i studentëve në një panel të centralizuar.",
   },
   {
     ikona: BookOpen,
-    titulli: "Provimet",
+    titulli: "Rezultate Provimesh",
     pershkrimi:
-      "Shikoni provimet tuaja, datat e planifikuara dhe statuset e tyre.",
+      "Regjistrimi i notave, sezoneve akademike dhe statusit të kalimit për çdo provim.",
   },
   {
-    ikona: Users,
-    titulli: "Profili Personal",
+    ikona: GraduationCap,
+    titulli: "Panel Personal",
     pershkrimi:
-      "Menaxhoni profilin tuaj personal dhe informacionet e identifikimit.",
+      "Çdo student sheh profilin, të dhënat akademike dhe provimet e veta në kohë reale.",
   },
   {
     ikona: Shield,
-    titulli: "Siguri e Lartë",
+    titulli: "Siguri me Supabase",
     pershkrimi:
-      "Të dhënat tuaja mbrohen me sisteme moderne autentifikimi dhe enkriptimi.",
+      "Autentifikim i sigurt, role të ndara dhe mbrojtje e të dhënave me teknologji moderne.",
   },
 ];
 
@@ -38,36 +38,30 @@ export default function Kryefaqja() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
-        <section className="gradient-hero relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.15),transparent_50%)]" />
-          <div className="relative mx-auto max-w-7xl text-center">
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-purple/40">
-              <Shield className="h-10 w-10 text-gold" />
+      <main className="flex-1 overflow-x-hidden">
+        <section className="gradient-hero pattern-bg relative overflow-hidden px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.08),transparent_55%)]" />
+          <div className="relative mx-auto max-w-7xl text-center animate-fade-in">
+            <div className="icon-accent-box mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-2xl">
+              <Shield className="h-10 w-10 text-accent" />
             </div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               <span className="gold-accent">Portali i Studentëve</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-foreground/70 sm:text-xl">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-foreground/80 sm:text-xl">
               Akademia e Forcave të Armatosura
             </p>
-            <p className="mx-auto mt-6 max-w-3xl text-base text-foreground/60">
-              Platforma zyrtare për menaxhimin e të dhënave akademike, provimeve
-              dhe profilit personal të studentëve të Akademisë së Forcave të
-              Armatosura.
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted">
+              Platforma zyrtare për menaxhimin e studentëve, provimeve dhe
+              profileve akademike. Një sistem modern, i sigurt dhe i përshtatshëm
+              për institucionin tonë.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/login"
-                className="btn-primary rounded-xl px-8 py-3 text-sm font-semibold"
+                className="btn-primary w-full rounded-xl px-8 py-3.5 text-sm font-semibold sm:w-auto"
               >
                 Hyr në Portal
-              </Link>
-              <Link
-                href="/dashboard"
-                className="btn-secondary rounded-xl px-8 py-3 text-sm font-semibold"
-              >
-                Paneli i Studentit
               </Link>
             </div>
           </div>
@@ -75,29 +69,38 @@ export default function Kryefaqja() {
 
         <section className="px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+            <div className="text-center animate-slide-up">
               <h2 className="text-3xl font-bold text-foreground">
                 Veçoritë Kryesore
               </h2>
-              <p className="mt-4 text-foreground/60">
-                Gjithçka që ju nevojitet për menaxhimin e studimeve tuaja
+              <p className="mx-auto mt-4 max-w-2xl text-muted">
+                Gjithçka që nevojitet për menaxhimin akademik të studentëve
               </p>
             </div>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {vecorite.map((vecoria) => {
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {vecorite.map((vecoria, index) => {
                 const Ikona = vecoria.ikona;
+                const delayClass =
+                  index === 0
+                    ? "animate-slide-up"
+                    : index === 1
+                      ? "animate-slide-up-delay-1"
+                      : index === 2
+                        ? "animate-slide-up-delay-2"
+                        : "animate-slide-up-delay-3";
+
                 return (
                   <div
                     key={vecoria.titulli}
-                    className="card-elegant rounded-2xl p-6"
+                    className={`card-elegant rounded-2xl p-6 ${delayClass}`}
                   >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple/30">
-                      <Ikona className="h-6 w-6 text-gold" />
+                    <div className="icon-accent-box mb-5 flex h-12 w-12 items-center justify-center rounded-xl">
+                      <Ikona className="h-6 w-6 text-accent" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">
                       {vecoria.titulli}
                     </h3>
-                    <p className="mt-2 text-sm text-foreground/60">
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
                       {vecoria.pershkrimi}
                     </p>
                   </div>
@@ -107,17 +110,17 @@ export default function Kryefaqja() {
           </div>
         </section>
 
-        <section className="border-t border-gold/10 px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl text-center">
+        <section className="border-t border-white/8 px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl text-center animate-fade-in">
             <h2 className="text-2xl font-bold text-foreground">
               Gati për të filluar?
             </h2>
-            <p className="mt-4 text-foreground/60">
+            <p className="mt-4 text-muted">
               Identifikohuni për të aksesuar panelin tuaj personal
             </p>
             <Link
               href="/login"
-              className="btn-primary mt-8 inline-block rounded-xl px-8 py-3 text-sm font-semibold"
+              className="btn-primary mt-8 inline-block rounded-xl px-8 py-3.5 text-sm font-semibold"
             >
               Hyr Tani
             </Link>
@@ -125,11 +128,11 @@ export default function Kryefaqja() {
         </section>
       </main>
 
-      <footer className="border-t border-gold/10 bg-navy/50 px-4 py-8 sm:px-6 lg:px-8">
+      <footer className="border-t border-white/8 bg-surface px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
-          <p className="text-sm text-foreground/50">
-            © {new Date().getFullYear()} Akademia e Forcave të Armatosura — Portali
-            i Studentëve
+          <p className="text-sm text-muted">
+            © {new Date().getFullYear()} Akademia e Forcave të Armatosura —
+            Portali i Studentëve
           </p>
         </div>
       </footer>

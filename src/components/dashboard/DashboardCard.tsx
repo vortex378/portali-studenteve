@@ -29,15 +29,15 @@ export default function DashboardCard({
   const Ikona = ikonaMap[ikona] ?? User;
 
   return (
-    <div className="card-elegant rounded-2xl p-6">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm font-medium text-foreground/60">{titulli}</p>
+    <div className="stat-card rounded-2xl p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <p className="text-sm font-medium text-muted">{titulli}</p>
           <p className="mt-2 text-3xl font-bold gold-accent">{vlera}</p>
-          <p className="mt-2 text-sm text-foreground/50">{pershkrimi}</p>
+          <p className="mt-2 text-sm text-muted">{pershkrimi}</p>
         </div>
-        <div className="rounded-xl bg-purple/30 p-3">
-          <Ikona className="h-6 w-6 text-gold" />
+        <div className="icon-accent-box shrink-0 rounded-xl p-3">
+          <Ikona className="h-6 w-6 text-accent" />
         </div>
       </div>
     </div>

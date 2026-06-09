@@ -59,21 +59,21 @@ export default function LoginForm() {
 
   if (dukeNgarkuar) {
     return (
-      <div className="card-elegant mx-auto w-full max-w-md rounded-2xl p-8">
+      <div className="card-glass mx-auto w-full max-w-md animate-fade-in rounded-2xl p-8">
         <LoadingState mesazhi="Duke u identifikuar..." />
       </div>
     );
   }
 
   return (
-    <div className="card-elegant mx-auto w-full max-w-md rounded-2xl p-8">
+    <div className="card-glass mx-auto w-full max-w-md animate-slide-up rounded-2xl p-6 sm:p-8">
       <div className="mb-8 text-center">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-purple/40">
-          <LogIn className="h-7 w-7 text-gold" />
+        <div className="icon-accent-box mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl">
+          <LogIn className="h-7 w-7 text-accent" />
         </div>
         <h1 className="text-2xl font-bold text-foreground">Hyrja në Portal</h1>
-        <p className="mt-2 text-sm text-foreground/60">
-          Identifikohuni për të aksesuar panelin tuaj
+        <p className="mt-2 text-sm text-muted">
+          Vendosni kredencialet tuaja për të vazhduar
         </p>
       </div>
 
@@ -87,12 +87,12 @@ export default function LoginForm() {
         <div>
           <label
             htmlFor="email"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Adresa Email
           </label>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
+            <Mail className="absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
             <input
               id="email"
               type="email"
@@ -109,12 +109,12 @@ export default function LoginForm() {
         <div>
           <label
             htmlFor="fjalekalimi"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Fjalëkalimi
           </label>
           <div className="relative">
-            <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
+            <Lock className="absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
             <input
               id="fjalekalimi"
               type="password"
@@ -130,15 +130,18 @@ export default function LoginForm() {
 
         <button
           type="submit"
-          className="btn-primary w-full rounded-xl py-3 text-sm"
+          className="btn-primary w-full rounded-xl py-3.5 text-sm"
           disabled={dukeNgarkuar}
         >
           Hyr
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-foreground/50">
-        <Link href="/" className="text-gold hover:underline">
+      <p className="mt-6 text-center text-sm text-muted">
+        <Link
+          href="/"
+          className="text-accent-light transition-colors hover:text-accent"
+        >
           Kthehu në kryefaqe
         </Link>
       </p>

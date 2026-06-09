@@ -84,8 +84,8 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
 
   if (studentet.length === 0) {
     return (
-      <div className="card-elegant rounded-2xl p-8 text-center">
-        <p className="text-foreground/70">
+      <div className="card-glass animate-slide-up rounded-2xl p-8 text-center">
+        <p className="text-muted">
           Nuk ka studentë të regjistruar. Shtoni një student përpara se të
           regjistroni provime.
         </p>
@@ -100,14 +100,14 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
   }
 
   return (
-    <div className="card-elegant rounded-2xl p-8">
+    <div className="card-glass animate-slide-up rounded-2xl p-6 sm:p-8">
       <div className="mb-8 flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple/40">
-          <BookOpen className="h-6 w-6 text-gold" />
+        <div className="icon-accent-box flex h-12 w-12 items-center justify-center rounded-xl">
+          <BookOpen className="h-6 w-6 text-accent" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">Shto Provim të Ri</h2>
-          <p className="text-sm text-foreground/60">
+          <p className="text-sm text-muted">
             Regjistroni një provim për studentin e zgjedhur
           </p>
         </div>
@@ -120,7 +120,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
       )}
 
       {sukses && (
-        <div className="mb-6">
+        <div className="mb-6 animate-slide-up">
           <SuccessMessage mesazhi={sukses} />
           <Link
             href="/admin/exams"
@@ -135,7 +135,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
         <div>
           <label
             htmlFor="student_id"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Studenti
           </label>
@@ -161,7 +161,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
         <div>
           <label
             htmlFor="exam_name"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Lënda
           </label>
@@ -182,7 +182,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
           <div>
             <label
               htmlFor="academic_year"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Viti Akademik i Provimit
             </label>
@@ -206,7 +206,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
           <div>
             <label
               htmlFor="season"
-              className="mb-2 block text-sm font-medium text-foreground/80"
+              className="mb-2 block text-sm font-medium text-foreground/85"
             >
               Sezoni
             </label>
@@ -232,7 +232,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
         <div>
           <label
             htmlFor="grade"
-            className="mb-2 block text-sm font-medium text-foreground/80"
+            className="mb-2 block text-sm font-medium text-foreground/85"
           >
             Nota
           </label>
@@ -250,7 +250,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
           />
           {statusPreview && (
             <div className="mt-3 flex items-center gap-3">
-              <span className="text-sm text-foreground/60">
+              <span className="text-sm text-muted">
                 Parapamje statusi (Nota {notaNumerike}):
               </span>
               <ExamResultBadge statusi={statusPreview} />

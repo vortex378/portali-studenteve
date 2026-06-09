@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils";
 
 interface LogoutButtonProps {
   className?: string;
@@ -27,7 +28,10 @@ export default function LogoutButton({
       <button
         type="button"
         onClick={handleLogout}
-        className={`inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground/70 transition-colors hover:bg-purple/20 hover:text-gold ${className}`}
+        className={cn(
+          "inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-foreground/65 transition-all duration-300 hover:bg-white/5 hover:text-accent-light",
+          className
+        )}
       >
         <LogOut className="h-4 w-4" />
         Dil
@@ -39,7 +43,10 @@ export default function LogoutButton({
     <button
       type="button"
       onClick={handleLogout}
-      className={`btn-secondary inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm ${className}`}
+      className={cn(
+        "btn-secondary inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm",
+        className
+      )}
     >
       <LogOut className="h-4 w-4" />
       Dil nga llogaria

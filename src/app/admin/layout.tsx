@@ -14,36 +14,36 @@ export default function AdminLayout({
   const [sidebarHapur, setSidebarHapur] = useState(false);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen overflow-x-hidden bg-background">
       <AdminSidebar
         hapur={sidebarHapur}
         onMbyll={() => setSidebarHapur(false)}
       />
 
-      <div className="flex flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-gold/10 bg-navy/80 px-4 py-4 backdrop-blur-md lg:px-8">
-          <div className="flex items-center gap-4">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/8 bg-surface/90 px-4 py-3.5 backdrop-blur-xl lg:px-8">
+          <div className="flex min-w-0 items-center gap-3">
             <button
               type="button"
               onClick={() => setSidebarHapur(true)}
-              className="rounded-lg p-2 text-foreground lg:hidden"
+              className="rounded-xl p-2 text-foreground transition-colors hover:bg-white/5 lg:hidden"
               aria-label="Hap menunë"
             >
               <Menu className="h-6 w-6" />
             </button>
-            <div>
-              <p className="text-sm font-bold text-foreground">
+            <div className="min-w-0">
+              <p className="truncate text-sm font-bold text-foreground">
                 Paneli i Administratorit
               </p>
-              <p className="text-xs text-gold/70">
+              <p className="truncate text-xs text-muted">
                 Akademia e Forcave të Armatosura
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Link
               href="/"
-              className="hidden text-sm text-foreground/60 transition-colors hover:text-gold sm:inline"
+              className="hidden text-sm text-muted transition-colors hover:text-accent-light sm:inline"
             >
               Kthehu në Portal
             </Link>
@@ -51,7 +51,7 @@ export default function AdminLayout({
           </div>
         </header>
 
-        <main className="flex-1 p-4 lg:p-8">{children}</main>
+        <main className="flex-1 overflow-x-hidden p-4 lg:p-8">{children}</main>
       </div>
     </div>
   );

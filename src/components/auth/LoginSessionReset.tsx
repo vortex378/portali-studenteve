@@ -31,7 +31,7 @@ export default function LoginSessionReset() {
 
   if (!gati) {
     return (
-      <div className="card-elegant mx-auto w-full max-w-md rounded-2xl p-8">
+      <div className="card-glass mx-auto w-full max-w-md rounded-2xl p-8">
         <LoadingState mesazhi="Duke përgatitur formën e hyrjes..." />
       </div>
     );
