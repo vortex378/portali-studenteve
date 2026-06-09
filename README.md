@@ -18,9 +18,11 @@ Portali zyrtar i studentëve për Akademinë e Forcave të Armatosura. Platforma
 ```
 src/
 ├── app/              # Faqet dhe layout-et
+│   └── api/register/ # Regjistrimi publik i studentëve
 ├── components/       # Komponentët e riutilizueshëm
 ├── lib/
 │   ├── auth/         # Logjika e roleve (admin/student)
+│   ├── branches/     # Leximi i degëve (server-side)
 │   └── supabase/     # Klientët Supabase (browser, server, admin)
 ├── middleware.ts     # Mbrojtja e faqeve sipas rolit
 └── types/            # Tipet TypeScript
@@ -180,10 +182,23 @@ Administratori ka akses në:
 - Menaxhimin e provimeve
 
 ### Student
-Studentët shtohen nga administratori dhe kanë akses vetëm te:
+Studentët mund të regjistrohen vetë ose të shtohen nga administratori. Pas hyrjes, kanë akses vetëm te:
 - Profili personal
 - Të dhënat akademike
 - Provimet dhe statuset e tyre
+
+## Regjistrimi i studentëve
+
+Studentët mund të regjistrohen vetë në faqen `/register` duke plotësuar të dhënat personale, akademike dhe kredencialet e hyrjes.
+
+- Sistemi kërkon **email** dhe **fjalëkalim** (minimumi 6 karaktere).
+- Fjalëkalimi ruhet vetëm në **Supabase Auth** — nuk ruhet në tabelën `students`.
+- Pas regjistrimit, studenti merr një **email verifikimi** nga Supabase.
+- Email-i duhet të verifikohet përpara hyrjes në portal.
+- Pas verifikimit dhe hyrjes, studenti ridrejtohet te `/dashboard` dhe sheh vetëm të dhënat e veta.
+- **Administratori** vazhdon të mund të shtojë studentë manualisht nga `/admin/students/new` (pa kërkuar verifikim email-i nga studenti, sipas konfigurimit aktual të admin flow).
+
+> **Shënim:** Në Supabase Dashboard → **Authentication** → **Providers** → **Email**, sigurohu që "Confirm email" është aktivizuar që verifikimi të funksionojë për regjistrimin publik.
 
 ## Faqet kryesore
 
@@ -191,6 +206,7 @@ Studentët shtohen nga administratori dhe kanë akses vetëm te:
 |-------|------------|
 | `/` | Faqja kryesore prezantuese |
 | `/login` | Hyrja në portal |
+| `/register` | Regjistrimi i studentëve |
 | `/dashboard` | Paneli personal i studentit |
 | `/admin` | Paneli i administratorit |
 | `/admin/students` | Lista e studentëve |

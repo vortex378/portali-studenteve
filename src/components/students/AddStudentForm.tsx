@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { UserPlus } from "lucide-react";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import Select from "@/components/ui/Select";
 import LoadingState from "@/components/ui/LoadingState";
 import SuccessMessage from "@/components/ui/SuccessMessage";
 import { VITET_AKADEMIKE } from "@/lib/constants/academic";
@@ -231,12 +232,11 @@ export default function AddStudentForm() {
             >
               Viti Akademik
             </label>
-            <select
+            <Select
               id="academic_year"
               name="academic_year"
               value={form.academic_year}
               onChange={handleChange}
-              className="input-field w-full rounded-xl px-4 py-3"
               required
               disabled={dukeRuajtur}
             >
@@ -246,7 +246,7 @@ export default function AddStudentForm() {
                   Viti {viti}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
           <div>
             <label
@@ -277,12 +277,11 @@ export default function AddStudentForm() {
           >
             Dega
           </label>
-          <select
+          <Select
             id="branch_id"
             name="branch_id"
             value={form.branch_id}
             onChange={handleChange}
-            className="input-field w-full rounded-xl px-4 py-3"
             required
             disabled={dukeRuajtur || degët.length === 0}
           >
@@ -292,7 +291,7 @@ export default function AddStudentForm() {
                 {dega.code} — {dega.name}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
 
         <div>

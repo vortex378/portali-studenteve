@@ -10,6 +10,7 @@ import {
   llogaritStatusinNgaNota,
 } from "@/lib/constants/academic";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import Select from "@/components/ui/Select";
 import LoadingState from "@/components/ui/LoadingState";
 import SuccessMessage from "@/components/ui/SuccessMessage";
 import type { StudentWithBranch } from "@/types/database";
@@ -139,12 +140,11 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
           >
             Studenti
           </label>
-          <select
+          <Select
             id="student_id"
             name="student_id"
             value={form.student_id}
             onChange={handleChange}
-            className="input-field w-full rounded-xl px-4 py-3"
             required
             disabled={dukeRuajtur}
           >
@@ -155,7 +155,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
                 {s.branches?.code ?? "?"}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
 
         <div>
@@ -186,12 +186,11 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
             >
               Viti Akademik i Provimit
             </label>
-            <select
+            <Select
               id="academic_year"
               name="academic_year"
               value={form.academic_year}
               onChange={handleChange}
-              className="input-field w-full rounded-xl px-4 py-3"
               required
               disabled={dukeRuajtur}
             >
@@ -201,7 +200,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
                   Viti {viti}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
           <div>
             <label
@@ -210,12 +209,11 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
             >
               Sezoni
             </label>
-            <select
+            <Select
               id="season"
               name="season"
               value={form.season}
               onChange={handleChange}
-              className="input-field w-full rounded-xl px-4 py-3"
               required
               disabled={dukeRuajtur}
             >
@@ -225,7 +223,7 @@ export default function AddExamForm({ studentet }: AddExamFormProps) {
                   {sezoni}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
         </div>
 

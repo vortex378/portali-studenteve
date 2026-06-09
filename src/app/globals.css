@@ -303,6 +303,70 @@ body {
   color: rgba(163, 163, 163, 0.6);
 }
 
+.select-field {
+  appearance: none;
+  -webkit-appearance: none;
+  color-scheme: dark;
+  background-color: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--foreground);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.select-field:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(17, 17, 17, 0.95);
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+  background-color: rgba(17, 17, 17, 0.98);
+}
+
+.select-field:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.select-field option {
+  background-color: #111111;
+  color: #e5e5e5;
+}
+
+.select-field option:checked {
+  background-color: #ea580c;
+  color: #ffffff;
+}
+
+.input-field[type="date"],
+.input-field[type="datetime-local"] {
+  color-scheme: dark;
+  position: relative;
+}
+
+.input-field[type="date"]::-webkit-calendar-picker-indicator,
+.input-field[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.85;
+  filter: invert(55%) sepia(80%) saturate(600%) hue-rotate(360deg)
+    brightness(105%);
+}
+
+.input-field[type="date"]::-webkit-datetime-edit,
+.input-field[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  color: var(--foreground);
+}
+
+.input-field[type="date"]::-webkit-datetime-edit-text,
+.input-field[type="date"]::-webkit-datetime-edit-month-field,
+.input-field[type="date"]::-webkit-datetime-edit-day-field,
+.input-field[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--foreground);
+}
+
 .gold-accent {
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
   -webkit-background-clip: text;
@@ -465,6 +529,10 @@ body {
 
 .mobile-menu-panel[data-open="true"] .mobile-nav-link:nth-child(3) {
   animation-delay: 0.15s;
+}
+
+.mobile-menu-panel[data-open="true"] .mobile-nav-link:nth-child(4) {
+  animation-delay: 0.2s;
 }
 
 .mobile-menu-panel[data-open="true"] .mobile-nav-logout {

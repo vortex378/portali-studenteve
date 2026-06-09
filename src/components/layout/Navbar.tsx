@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { Menu, Shield, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import LogoutButton from "@/components/auth/LogoutButton";
+import { createClient } from "@/lib/supabase/client";
 
-const lidhjet = [
+const lidhjetBaze = [
   { href: "/", etiketa: "Kryefaqja" },
   { href: "/login", etiketa: "Hyrja" },
   { href: "/dashboard", etiketa: "Paneli" },
@@ -15,6 +16,31 @@ const lidhjet = [
 export default function Navbar() {
   const pathname = usePathname();
   const [menuHapur, setMenuHapur] = useState(false);
+  const [iLoguar, setILoguar] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setILoguar(!!session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setILoguar(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const lidhjet = iLoguar
+    ? lidhjetBaze
+    : [
+        ...lidhjetBaze.slice(0, 2),
+        { href: "/register", etiketa: "Regjistrohu" },
+        ...lidhjetBaze.slice(2),
+      ];
 
   const mbyllMenune = useCallback(() => setMenuHapur(false), []);
 
@@ -40,30 +66,30 @@ export default function Navbar() {
 
   return (
     <nav className="relative sticky top-0 z-50 border-b border-white/8 bg-surface/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <Link href="/" className="flex min-w-0 shrink items-center gap-2.5 sm:gap-3">
           <div className="icon-accent-box flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
             <Shield className="h-5 w-5 text-accent" />
           </div>
-          <div className="hidden min-w-0 sm:block">
+          <div className="hidden min-w-0 sm:block lg:max-w-none">
             <p className="truncate text-sm font-bold leading-tight text-foreground">
               Portali i Studentëve
             </p>
-            <p className="truncate text-xs text-accent-light/90">
+            <p className="hidden truncate text-xs text-accent-light/90 md:block">
               Akademia e Forcave të Armatosura
             </p>
           </div>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden shrink-0 items-center gap-0.5 md:flex lg:gap-1.5">
           {lidhjet.map((lidhja) => (
             <Link
               key={lidhja.href}
               href={lidhja.href}
-              className={`rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300 ${
+              className={`whitespace-nowrap rounded-xl px-2.5 py-2 text-xs font-medium transition-all duration-300 sm:px-3 sm:text-sm lg:px-3.5 ${
                 pathname === lidhja.href
                   ? "bg-accent/15 text-accent-light"
-                  : "text-foreground/65 hover:bg-white/5 hover:text-foreground"
+                  : "text-foreground/70 hover:bg-white/5 hover:text-foreground"
               }`}
             >
               {lidhja.etiketa}

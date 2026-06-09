@@ -30,7 +30,28 @@ export default function LoginForm() {
       });
 
       if (authError) {
+        const msg = authError.message.toLowerCase();
+        if (
+          msg.includes("email not confirmed") ||
+          msg.includes("not confirmed") ||
+          msg.includes("email address not confirmed")
+        ) {
+          setGabim(
+            "Ju lutem verifikoni email-in përpara hyrjes në portal."
+          );
+          return;
+        }
         setGabim("Email ose fjalëkalimi është i gabuar.");
+        return;
+      }
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user && !user.email_confirmed_at) {
+        await supabase.auth.signOut();
+        setGabim("Ju lutem verifikoni email-in përpara hyrjes në portal.");
         return;
       }
 
@@ -137,7 +158,19 @@ export default function LoginForm() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-muted">
+      <div className="mt-6 border-t border-white/8 pt-6 text-center">
+        <p className="text-sm text-muted">
+          Nuk keni llogari?{" "}
+          <Link
+            href="/register"
+            className="font-medium text-accent-light underline-offset-4 transition-colors hover:text-accent hover:underline"
+          >
+            Regjistrohu
+          </Link>
+        </p>
+      </div>
+
+      <p className="mt-3 text-center text-sm text-muted">
         <Link
           href="/"
           className="text-accent-light transition-colors hover:text-accent"
