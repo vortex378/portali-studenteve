@@ -5,6 +5,7 @@ import {
   Shield,
   Users,
 } from "lucide-react";
+import HeroHeading from "@/components/home/HeroHeading";
 import Navbar from "@/components/layout/Navbar";
 
 const vecorite = [
@@ -45,17 +46,9 @@ export default function Kryefaqja() {
             <div className="icon-accent-box mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-2xl">
               <Shield className="h-10 w-10 text-accent" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              <span className="gold-accent">Portali i Studentëve</span>
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-foreground/80 sm:text-xl">
-              Akademia e Forcave të Armatosura
-            </p>
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted">
-              Platforma zyrtare për menaxhimin e studentëve, provimeve dhe
-              profileve akademike. Një sistem modern, i sigurt dhe i përshtatshëm
-              për institucionin tonë.
-            </p>
+            <div className="mt-8 w-full sm:mt-10">
+              <HeroHeading />
+            </div>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/login"
