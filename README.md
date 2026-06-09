@@ -26,8 +26,16 @@ src/
 │   └── supabase/     # Klientët Supabase (browser, server, admin)
 ├── middleware.ts     # Mbrojtja e faqeve sipas rolit
 └── types/            # Tipet TypeScript
+docs/
+├── database-design.md    # CDM, LDM, RDM, normalizim, siguri
+├── relational-model.md   # Modeli relacional + diagram ASCII
+├── project-report.md     # Raport i përmbledhur (~5 faqe)
+└── presentation-flow.md  # Flow për prezantim live
 supabase/
-└── schema.sql        # Skema PostgreSQL + RLS
+├── schema.sql            # Skema PostgreSQL + RLS
+├── reports.sql           # SQL reports (SELECT, JOIN, subquery)
+├── views-and-triggers.sql # VIEW + TRIGGER
+└── admin-setup.sql       # Konfigurimi i adminit
 ```
 
 ## Instalimi lokal
@@ -213,6 +221,31 @@ Studentët mund të regjistrohen vetë në faqen `/register` duke plotësuar të
 | `/admin/students/new` | Shto student të ri |
 | `/admin/exams` | Lista e provimeve |
 | `/admin/exams/new` | Shto provim të ri |
+
+## Përputhja me kërkesat e projektit final
+
+Projekti plotëson kërkesat akademike të lëndës **Sistemet e Menaxhimit të Databazave** (Fakulteti i Mbrojtjes dhe Sigurisë, TIK në Fushën e Mbrojtjes):
+
+| Kërkesa | Ku gjendet |
+|---------|------------|
+| **Kodi burimor** | Repozitori GitHub — Next.js, TypeScript, Supabase |
+| **Raporti** | [`docs/project-report.md`](docs/project-report.md) |
+| **CDM / LDM / RDM** | [`docs/database-design.md`](docs/database-design.md), [`docs/relational-model.md`](docs/relational-model.md) |
+| **SQL reports** | [`supabase/reports.sql`](supabase/reports.sql) — DISTINCT, LIMIT, operatorë logjikë, LIKE, IN, BETWEEN, JOIN, subquery |
+| **VIEW** | [`supabase/views-and-triggers.sql`](supabase/views-and-triggers.sql) — `student_exam_overview` |
+| **TRIGGER** | [`supabase/views-and-triggers.sql`](supabase/views-and-triggers.sql) — `set_exam_status_from_grade` |
+| **GUI** | Ndërfaqe web funksionale — admin panel, student dashboard, regjistrim |
+| **Demo live** | [`docs/presentation-flow.md`](docs/presentation-flow.md) |
+| **Deploy** | [https://portali-studenteve.vercel.app](https://portali-studenteve.vercel.app) |
+
+### SQL në Supabase SQL Editor
+
+Pas `schema.sql`, ekzekuto manualisht (në këtë rend):
+
+1. **`supabase/views-and-triggers.sql`** — krijon VIEW dhe TRIGGER (e nevojshme për kërkesat akademike).
+2. **`supabase/reports.sql`** — query raportuese për demonstrim (opsionale, mund të ekzekutohen pjesë-pjesë).
+
+> **Shënim:** `reports.sql` nuk modifikon skemën; `views-and-triggers.sql` shton VIEW dhe TRIGGER në databazë.
 
 ## Licenca
 
