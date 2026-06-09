@@ -55,18 +55,6 @@ export async function middleware(request: NextRequest) {
     return supabaseResponse;
   }
 
-  if (pathname === "/login" && user) {
-    const { role } = await getCurrentUserRole(supabase);
-
-    if (role === "admin") {
-      return NextResponse.redirect(new URL("/admin", request.url));
-    }
-
-    if (role === "student") {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
-    }
-  }
-
   return supabaseResponse;
 }
 

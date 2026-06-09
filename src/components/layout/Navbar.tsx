@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Shield, X } from "lucide-react";
 import { useState } from "react";
+import LogoutButton from "@/components/auth/LogoutButton";
 
 const lidhjet = [
   { href: "/", etiketa: "Kryefaqja" },
@@ -46,6 +47,7 @@ export default function Navbar() {
               {lidhja.etiketa}
             </Link>
           ))}
+          {pathname === "/dashboard" && <LogoutButton variant="compact" />}
         </div>
 
         <button
@@ -74,6 +76,11 @@ export default function Navbar() {
               {lidhja.etiketa}
             </Link>
           ))}
+          {pathname === "/dashboard" && (
+            <div className="px-4 py-2">
+              <LogoutButton variant="compact" />
+            </div>
+          )}
         </div>
       )}
     </nav>

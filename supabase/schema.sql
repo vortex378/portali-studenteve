@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS public.branches (
 
 INSERT INTO public.branches (code, name) VALUES
   ('TIK', 'Teknologji Informacioni & Komunikimi në fushën e mbrojtjes'),
-  ('MN', 'Marrëdhënie ndërkombëtare në fushën e mbrojtjes'),
+  ('MND', 'Marrëdhënie ndërkombëtare në fushën e mbrojtjes'),
   ('SHK', 'Shkenca komunikimi në fushën e mbrojtjes'),
   ('SHU', 'Shkenca Ushtarake')
 ON CONFLICT (code) DO NOTHING;
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS public.students (
   last_name TEXT NOT NULL,
   birth_date DATE NOT NULL,
   id_number TEXT UNIQUE NOT NULL,
-  academic_year INTEGER NOT NULL CHECK (academic_year >= 1 AND academic_year <= 5),
+  academic_year INTEGER NOT NULL CHECK (academic_year >= 1 AND academic_year <= 4),
   age INTEGER NOT NULL CHECK (age > 0),
   branch_id UUID REFERENCES public.branches(id),
   email TEXT UNIQUE NOT NULL,
@@ -37,8 +37,9 @@ CREATE TABLE IF NOT EXISTS public.exams (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   student_id UUID REFERENCES public.students(id) ON DELETE CASCADE,
   exam_name TEXT NOT NULL,
-  academic_year INTEGER NOT NULL CHECK (academic_year >= 1 AND academic_year <= 5),
+  academic_year INTEGER NOT NULL CHECK (academic_year >= 1 AND academic_year <= 4),
   season TEXT NOT NULL CHECK (season IN ('Sezoni Dimëror', 'Sezoni Veror')),
+  grade NUMERIC(4, 1) CHECK (grade IS NULL OR (grade >= 4 AND grade <= 10)),
   status TEXT NOT NULL CHECK (status IN ('Kaluar', 'Nuk ka kaluar')),
   created_at TIMESTAMPTZ DEFAULT NOW()
 );

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { UserPlus, Users } from "lucide-react";
-import StudentCard from "@/components/students/StudentCard";
-import type { Student } from "@/types";
+import StudentList from "@/components/students/StudentList";
+import { getStudentsForAdmin } from "@/lib/students/getStudentsForAdmin";
 
-const studentet: Student[] = [];
+export default async function ListaStudenteve() {
+  const studentet = await getStudentsForAdmin();
 
-export default function ListaStudenteve() {
   return (
     <div className="mx-auto max-w-7xl">
       <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -28,11 +28,8 @@ export default function ListaStudenteve() {
         <div className="card-elegant rounded-2xl p-12 text-center">
           <Users className="mx-auto h-12 w-12 text-foreground/30" />
           <h3 className="mt-4 text-lg font-semibold text-foreground/70">
-            Nuk ka studentë të regjistruar
+            Nuk ka studentë të regjistruar.
           </h3>
-          <p className="mt-2 text-sm text-foreground/50">
-            Studentët do të shfaqen këtu pasi të lidhen me Supabase.
-          </p>
           <Link
             href="/admin/students/new"
             className="btn-primary mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm"
@@ -42,11 +39,7 @@ export default function ListaStudenteve() {
           </Link>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {studentet.map((student) => (
-            <StudentCard key={student.id} student={student} />
-          ))}
-        </div>
+        <StudentList studentet={studentet} />
       )}
     </div>
   );

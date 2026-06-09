@@ -1,38 +1,41 @@
 import Link from "next/link";
 import { BookOpen, UserPlus, Users } from "lucide-react";
+import { getStudentCountForAdmin } from "@/lib/students/getStudentsForAdmin";
 
-const veprimet = [
-  {
-    href: "/admin/students",
-    titulli: "Studentët",
-    pershkrimi: "Shiko dhe menaxho listën e studentëve",
-    ikona: Users,
-    ngjyra: "bg-purple/30",
-  },
-  {
-    href: "/admin/students/new",
-    titulli: "Shto Student",
-    pershkrimi: "Regjistro një student të ri në sistem",
-    ikona: UserPlus,
-    ngjyra: "bg-navy-light/50",
-  },
-  {
-    href: "/admin/exams",
-    titulli: "Provimet",
-    pershkrimi: "Shiko dhe menaxho provimet e studentëve",
-    ikona: BookOpen,
-    ngjyra: "bg-purple/30",
-  },
-  {
-    href: "/admin/exams/new",
-    titulli: "Shto Provim",
-    pershkrimi: "Krijo një provim të ri për studentët",
-    ikona: BookOpen,
-    ngjyra: "bg-navy-light/50",
-  },
-];
+export default async function PaneliAdmin() {
+  const numriStudenteve = await getStudentCountForAdmin();
 
-export default function PaneliAdmin() {
+  const veprimet = [
+    {
+      href: "/admin/students",
+      titulli: "Studentët",
+      pershkrimi: `Shiko dhe menaxho listën e studentëve (${numriStudenteve} të regjistruar)`,
+      ikona: Users,
+      ngjyra: "bg-purple/30",
+    },
+    {
+      href: "/admin/students/new",
+      titulli: "Shto Student",
+      pershkrimi: "Regjistro një student të ri në sistem",
+      ikona: UserPlus,
+      ngjyra: "bg-navy-light/50",
+    },
+    {
+      href: "/admin/exams",
+      titulli: "Provimet",
+      pershkrimi: "Shiko dhe menaxho provimet e studentëve",
+      ikona: BookOpen,
+      ngjyra: "bg-purple/30",
+    },
+    {
+      href: "/admin/exams/new",
+      titulli: "Shto Provim",
+      pershkrimi: "Krijo një provim të ri për studentët",
+      ikona: BookOpen,
+      ngjyra: "bg-navy-light/50",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl">
       <div className="mb-10">
@@ -60,7 +63,7 @@ export default function PaneliAdmin() {
                   <Ikona className="h-6 w-6 text-gold transition-transform group-hover:scale-110" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-foreground group-hover:text-gold transition-colors">
+                  <h2 className="text-lg font-semibold text-foreground transition-colors group-hover:text-gold">
                     {veprim.titulli}
                   </h2>
                   <p className="mt-1 text-sm text-foreground/60">
@@ -78,8 +81,8 @@ export default function PaneliAdmin() {
           Statusi i Sistemit
         </h2>
         <p className="mt-2 text-sm text-foreground/60">
-          Supabase nuk është lidhur ende. Pas konfigurimit, këtu do të shfaqen
-          statistikat e studentëve dhe provimeve.
+          Studentë të regjistruar:{" "}
+          <span className="font-semibold text-gold">{numriStudenteve}</span>
         </p>
       </div>
     </div>

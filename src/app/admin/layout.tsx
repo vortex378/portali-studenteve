@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import LogoutButton from "@/components/auth/LogoutButton";
 import AdminSidebar from "@/components/layout/AdminSidebar";
 
 export default function AdminLayout({
@@ -39,12 +40,15 @@ export default function AdminLayout({
               </p>
             </div>
           </div>
-          <Link
-            href="/"
-            className="text-sm text-foreground/60 transition-colors hover:text-gold"
-          >
-            Kthehu në Portal
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="hidden text-sm text-foreground/60 transition-colors hover:text-gold sm:inline"
+            >
+              Kthehu në Portal
+            </Link>
+            <LogoutButton variant="compact" />
+          </div>
         </header>
 
         <main className="flex-1 p-4 lg:p-8">{children}</main>

@@ -25,12 +25,17 @@ export interface Student {
   created_at: string;
 }
 
+export interface StudentWithBranch extends Student {
+  branches: Pick<Branch, "code" | "name"> | null;
+}
+
 export interface Exam {
   id: string;
   student_id: string;
   exam_name: string;
   academic_year: number;
   season: ExamSeason;
+  grade: number | null;
   status: ExamStatus;
   created_at: string;
 }
