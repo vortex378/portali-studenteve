@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
-import ExamTable from "@/components/exams/ExamTable";
-import type { Exam } from "@/types";
+import ExamList from "@/components/exams/ExamList";
+import { getExamsForAdmin } from "@/lib/exams/getExamsForAdmin";
 
-const provimet: Exam[] = [];
+export default async function ListaProvimeve() {
+  const provimet = await getExamsForAdmin();
 
-export default function ListaProvimeve() {
   return (
     <div className="mx-auto max-w-7xl">
       <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Provimet</h1>
           <p className="mt-2 text-foreground/60">
-            Lista e të gjitha provimeve të planifikuara
+            Lista e të gjitha provimeve të regjistruara
           </p>
         </div>
         <Link
@@ -24,7 +24,7 @@ export default function ListaProvimeve() {
         </Link>
       </div>
 
-      <ExamTable provimet={provimet} />
+      <ExamList provimet={provimet} />
     </div>
   );
 }

@@ -40,6 +40,15 @@ export interface Exam {
   created_at: string;
 }
 
+export interface ExamWithStudent extends Exam {
+  students: {
+    first_name: string;
+    last_name: string;
+    id_number: string;
+    branches: Pick<Branch, "code" | "name"> | null;
+  } | null;
+}
+
 export interface AdminUser {
   id: string;
   user_id: string;

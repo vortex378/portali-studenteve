@@ -9,6 +9,7 @@ import LogoutButton from "@/components/auth/LogoutButton";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import StudentExamTable from "@/components/exams/StudentExamTable";
 import Navbar from "@/components/layout/Navbar";
+import { llogaritMesatarenNotave } from "@/lib/constants/academic";
 import { getStudentDashboardData } from "@/lib/students/getStudentDashboard";
 
 function formatoDaten(data: string) {
@@ -23,7 +24,13 @@ export default async function PaneliStudentit() {
   const { student, provimet } = await getStudentDashboardData();
 
   const provimeTeKalura = provimet.filter((p) => p.status === "Kaluar").length;
+  const provimeTePakaluara = provimet.filter(
+    (p) => p.status === "Nuk ka kaluar"
+  ).length;
   const provimeTeRegjistruara = provimet.length;
+  const mesatarjaNotave = llogaritMesatarenNotave(
+    provimet.map((p) => p.grade)
+  );
 
   return (
     <>
@@ -172,7 +179,7 @@ export default async function PaneliStudentit() {
                     Statistika të Shkurtra
                   </h2>
                 </div>
-                <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   <div className="rounded-xl bg-purple/20 p-4 text-center">
                     <p className="text-2xl font-bold gold-accent">
                       {provimeTeRegjistruara}
@@ -191,10 +198,18 @@ export default async function PaneliStudentit() {
                   </div>
                   <div className="rounded-xl bg-purple/20 p-4 text-center">
                     <p className="text-2xl font-bold gold-accent">
-                      {provimeTeRegjistruara - provimeTeKalura}
+                      {provimeTePakaluara}
                     </p>
                     <p className="mt-1 text-xs text-foreground/60">
                       Të pakaluara
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-purple/20 p-4 text-center">
+                    <p className="text-2xl font-bold gold-accent">
+                      {mesatarjaNotave !== null ? mesatarjaNotave : "—"}
+                    </p>
+                    <p className="mt-1 text-xs text-foreground/60">
+                      Mesatarja e notave
                     </p>
                   </div>
                 </div>

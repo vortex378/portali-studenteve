@@ -6,11 +6,13 @@ const statusConfig: Record<
 > = {
   Kaluar: {
     etiketa: "Kaluar",
-    klasa: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+    klasa:
+      "bg-emerald-500/25 text-emerald-300 border-emerald-400/50 shadow-[0_0_12px_rgba(52,211,153,0.35)]",
   },
   "Nuk ka kaluar": {
     etiketa: "Nuk ka kaluar",
-    klasa: "bg-red-500/20 text-red-300 border-red-500/30",
+    klasa:
+      "bg-red-500/25 text-red-300 border-red-400/50 shadow-[0_0_12px_rgba(248,113,113,0.35)]",
   },
 };
 
