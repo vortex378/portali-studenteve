@@ -1,4 +1,7 @@
 import AddExamForm from "@/components/exams/AddExamForm";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import PageContainer from "@/components/ui/PageContainer";
 import { getStudentsForAdmin } from "@/lib/students/getStudentsForAdmin";
 

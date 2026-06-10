@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { verifyAdminRequest } from "@/lib/auth/verifyAdmin";
 import { eshteVitiAkademikValid } from "@/lib/constants/academic";
@@ -146,29 +147,41 @@ export async function POST(request: Request) {
   }
 
   const userId = authData.user.id;
+  console.log("[admin/students/create] auth user created:", userId);
 
-  const { error: studentError } = await supabaseAdmin.from("students").insert({
-    user_id: userId,
-    first_name: first_name.trim(),
-    last_name: last_name.trim(),
-    birth_date,
-    id_number: id_number.trim(),
-    academic_year: vitiAkademik,
-    age: mosha,
-    branch_id: branch_id.trim(),
-    email: email.trim(),
-  });
+  const { data: studentData, error: studentError } = await supabaseAdmin
+    .from("students")
+    .insert({
+      user_id: userId,
+      first_name: first_name.trim(),
+      last_name: last_name.trim(),
+      birth_date,
+      id_number: id_number.trim(),
+      academic_year: vitiAkademik,
+      age: mosha,
+      branch_id: branch_id.trim(),
+      email: email.trim(),
+    })
+    .select("id")
+    .single();
 
-  if (studentError) {
+  if (studentError || !studentData) {
     await supabaseAdmin.auth.admin.deleteUser(userId);
 
     return NextResponse.json(
-      { error: mesazhGabimiDb(studentError.message) },
+      { error: mesazhGabimiDb(studentError?.message ?? "Gabim i panjohur") },
       { status: 400 }
     );
   }
 
+  console.log("[admin/students/create] student row inserted:", studentData.id);
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/students");
+  revalidatePath("/dashboard");
+
   return NextResponse.json({
     message: "Studenti u krijua me sukses.",
+    student_id: studentData.id,
   });
 }

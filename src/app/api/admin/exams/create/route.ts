@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { verifyAdminRequest } from "@/lib/auth/verifyAdmin";
 import {
@@ -106,6 +107,10 @@ export async function POST(request: Request) {
       { status: 400 }
     );
   }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/exams");
+  revalidatePath("/dashboard");
 
   return NextResponse.json({
     message: "Provimi u shtua me sukses.",

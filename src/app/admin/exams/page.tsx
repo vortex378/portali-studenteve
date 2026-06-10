@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import ExamList from "@/components/exams/ExamList";
 import PageContainer from "@/components/ui/PageContainer";
 import SectionHeading from "@/components/ui/SectionHeading";

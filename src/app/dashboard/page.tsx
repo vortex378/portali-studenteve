@@ -5,6 +5,9 @@ import {
   Mail,
   User,
 } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import LogoutButton from "@/components/auth/LogoutButton";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import StudentExamTable from "@/components/exams/StudentExamTable";

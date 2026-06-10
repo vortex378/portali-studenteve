@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { BookOpen, UserPlus, Users } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import PageContainer from "@/components/ui/PageContainer";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { getStudentCountForAdmin } from "@/lib/students/getStudentsForAdmin";

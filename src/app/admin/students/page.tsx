@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { UserPlus, Users } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import StudentList from "@/components/students/StudentList";
 import EmptyState from "@/components/ui/EmptyState";
 import PageContainer from "@/components/ui/PageContainer";

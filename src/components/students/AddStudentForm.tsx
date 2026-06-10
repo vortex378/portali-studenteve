@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { UserPlus } from "lucide-react";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Select from "@/components/ui/Select";
@@ -24,6 +25,7 @@ const fushatBosh = {
 };
 
 export default function AddStudentForm() {
+  const router = useRouter();
   const [form, setForm] = useState(fushatBosh);
   const [degët, setDegët] = useState<Branch[]>([]);
   const [dukeNgarkuarDegët, setDukeNgarkuarDegët] = useState(true);
@@ -95,6 +97,8 @@ export default function AddStudentForm() {
 
       setSukses(data.message ?? "Studenti u krijua me sukses.");
       setForm(fushatBosh);
+      router.refresh();
+      router.push("/admin/students");
     } catch {
       setGabim("Ndodhi një gabim gjatë krijimit të studentit.");
     } finally {
